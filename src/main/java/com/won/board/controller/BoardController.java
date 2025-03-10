@@ -35,7 +35,7 @@ public class BoardController {
         return ResponseEntity.ok(boardList);
     }
 
-    @Operation(summary = "특정 게시판 목록 조회", description = "특정 게시판 목록을 조회합니다.")
+    @Operation(summary = "특정 게시글 조회", description = "특정 게시글을 조회합니다.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "성공",
                     content = @Content(schema = @Schema(implementation = BoardResponse.class))),
@@ -46,7 +46,7 @@ public class BoardController {
         return ResponseEntity.ok(boardResponse);
     }
 
-    @Operation(summary = "게시판 작성", description = "게시판 작성을 합니다.")
+    @Operation(summary = "게시글 작성", description = "게시글을 작성 합니다.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "성공",
                     content = @Content(schema = @Schema(implementation = BoardResponse.class))),
@@ -57,7 +57,7 @@ public class BoardController {
         return ResponseEntity.ok(boardResponse);
     }
 
-    @Operation(summary = "게시판 수정", description = "게시판 내용을 수정합니다.")
+    @Operation(summary = "게시글 수정", description = "게시글 내용을 수정합니다.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "성공",
                     content = @Content(schema = @Schema(implementation = BoardResponse.class))),
@@ -66,5 +66,16 @@ public class BoardController {
     public ResponseEntity<BoardResponse> modify(@PathVariable long id, @RequestBody BoardRequest boardRequest) {
         BoardResponse boardResponse = boardService.updateBoard(id, boardRequest);
         return ResponseEntity.ok(boardResponse);
+    }
+
+    @Operation(summary = "게시글 삭제", description = "게시글을 삭제합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "성공",
+                    content = @Content(schema = @Schema(implementation = BoardResponse.class))),
+    })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remove(@PathVariable long id) {
+        boardService.deleteBoard(id);
+        return ResponseEntity.noContent().build();
     }
 }

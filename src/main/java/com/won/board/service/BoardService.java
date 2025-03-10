@@ -56,4 +56,10 @@ public class BoardService {
         boardRepository.save(board);
         return new BoardResponse(board);
     }
+
+    // 삭제 기능
+    public void deleteBoard(long id) {
+        Board board = boardRepository.findById(id).orElse(null);
+        if (board != null) boardRepository.delete(board);
+    }
 }
