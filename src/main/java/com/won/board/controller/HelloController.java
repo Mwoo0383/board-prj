@@ -1,4 +1,4 @@
-package com.won.board;
+package com.won.board.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
