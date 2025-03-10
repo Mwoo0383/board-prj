@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +42,17 @@ public class BoardService {
         board.setContent(boardRequest.getContent());
         board.setCreatedAt(LocalDateTime.now());
 
+        boardRepository.save(board);
+        return new BoardResponse(board);
+    }
+
+    // 게시판 수정
+    public BoardResponse updateBoard(long id, BoardRequest boardRequest) {
+        Board board = boardRepository.findById(id).orElse(null);
+
+        if (board == null) return null;
+        board.setTitle(boardRequest.getTitle());
+        board.setContent(boardRequest.getContent());
         boardRepository.save(board);
         return new BoardResponse(board);
     }

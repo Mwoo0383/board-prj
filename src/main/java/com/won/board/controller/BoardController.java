@@ -56,4 +56,15 @@ public class BoardController {
         BoardResponse boardResponse = boardService.write(boardRequest);
         return ResponseEntity.ok(boardResponse);
     }
+
+    @Operation(summary = "게시판 수정", description = "게시판 내용을 수정합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "성공",
+                    content = @Content(schema = @Schema(implementation = BoardResponse.class))),
+    })
+    @PatchMapping("/{id}")
+    public ResponseEntity<BoardResponse> modify(@PathVariable long id, @RequestBody BoardRequest boardRequest) {
+        BoardResponse boardResponse = boardService.updateBoard(id, boardRequest);
+        return ResponseEntity.ok(boardResponse);
+    }
 }
