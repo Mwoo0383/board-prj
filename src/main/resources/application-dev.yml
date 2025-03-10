@@ -1,0 +1,32 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/Board_t?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: AZsx!@#$1739
+  h2:
+    console:
+      enabled: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create  # 데이터 유지가 필요하면 update 사용
+    properties:
+      hibernate.default_batch_fetch_size: 100
+      hibernate.format_sql: true
+    show-sql: true
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    com.example.server: DEBUG
+    org.hibernate.type: TRACE

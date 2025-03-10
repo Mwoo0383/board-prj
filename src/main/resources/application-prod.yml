@@ -1,0 +1,26 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+  port: 8080
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # MySQL 8에 맞는 방언 사용
+    hibernate:
+      ddl-auto: update  # 데이터베이스에 스키마 변경을 반영하려면 update 또는 none 사용
+    show-sql: true
+    open-in-view: false  # 실제 화면에서 LazyLoading이 필요하지 않다면 false로 설정하는 것이 좋음
+
+logging:
+  level:
+    com.example.server: INFO
+    org.hibernate.type: TRACE
