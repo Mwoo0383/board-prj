@@ -18,7 +18,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create  # 데이터 유지가 필요하면 update 사용
+      ddl-auto: update  # 데이터 유지가 필요하면 update 사용
     properties:
       hibernate.default_batch_fetch_size: 100
       hibernate.format_sql: true
