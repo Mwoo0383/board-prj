@@ -4,6 +4,7 @@ import com.won.board.entity.Board;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 public class BoardResponse {
@@ -14,7 +15,7 @@ public class BoardResponse {
     public BoardResponse(Board board) {
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.createdAt = board.getCreatedAt();
+        this.createdAt = LocalDateTime.parse(board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
     }
 
 
