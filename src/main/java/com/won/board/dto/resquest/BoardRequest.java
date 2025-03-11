@@ -1,11 +1,10 @@
 package com.won.board.dto.resquest;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class BoardRequest {
     private String title;
     private String content;
+
+    public BoardRequest() {}
 
     public BoardRequest(String title, String content) {
         this.title = title;
