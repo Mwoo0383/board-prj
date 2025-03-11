@@ -17,6 +17,13 @@ public class ViewController {
     @Autowired
     private BoardService boardService;
 
+    // 게시물 삭제 처리
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        boardService.delete(id);  // 서비스 계층에서 삭제 처리
+        return "redirect:/board/list/1"; // 삭제 후 게시글 목록 페이지로 리다이렉트
+    }
+
     // 게시글 수정 페이지
     @GetMapping("/modify/{id}")
     public String modifyForm(@PathVariable Long id, Model model) {
@@ -31,7 +38,7 @@ public class ViewController {
 
     // 게시글 수정 처리
     @PostMapping("/modify/{id}")
-    public String update(@PathVariable Long id, @ModelAttribute BoardRequest boardRequest) {
+    public String modify(@PathVariable Long id, @ModelAttribute BoardRequest boardRequest) {
         boardService.update(id, boardRequest);
         return "redirect:/board/" + id; // 수정 후 상세 페이지로 이동
     }
