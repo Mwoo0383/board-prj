@@ -19,9 +19,8 @@ public class BoardResponse {
         this.title = board.getTitle();
         this.content = board.getContent();
         this.createdAt = LocalDateTime.parse(board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
-        this.updatedAt = LocalDateTime.parse(board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
+        this.updatedAt = LocalDateTime.parse(board.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
     }
-
 
     public Long getId() {
         return id;

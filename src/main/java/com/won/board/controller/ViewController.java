@@ -2,6 +2,7 @@ package com.won.board.controller;
 
 import com.won.board.dto.response.BoardResponse;
 import com.won.board.dto.resquest.BoardRequest;
+import com.won.board.entity.Board;
 import com.won.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,26 @@ public class ViewController {
 
     @Autowired
     private BoardService boardService;
+
+    // 게시글 수정 페이지
+    @GetMapping("/modify/{id}")
+    public String modifyForm(@PathVariable Long id, Model model) {
+        // id를 이용해 기존 게시글 정보를 가져옴
+        BoardResponse boardResponse = boardService.findById(id);
+
+        // 기존 데이터를 모델에 담아서 수정 폼에 전달
+        model.addAttribute("board", boardResponse);
+
+        return "board/modify"; // modify.html (게시글 수정 페이지) 반환
+    }
+
+    // 게시글 수정 처리
+    @PostMapping("/modify/{id}")
+    public String update(@PathVariable Long id, @ModelAttribute BoardRequest boardRequest) {
+        boardService.update(id, boardRequest);
+        return "redirect:/board/" + id; // 수정 후 상세 페이지로 이동
+    }
+
 
     // 게시글 작성 페이지
     @GetMapping("/write")

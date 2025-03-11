@@ -16,6 +16,7 @@
         <th>번호</th>
         <th>제목</th>
         <th>작성일</th>
+        <th>수정일</th>
     </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
         </td>
         <!-- 작성일 포맷팅 -->
         <td th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#temporals.format(board.updatedAt, 'yyyy-MM-dd HH:mm')}"></td>
     </tr>
     </tbody>
 </table>
