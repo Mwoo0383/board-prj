@@ -33,14 +33,14 @@
 
 <!-- 페이지네이션 -->
 <div>
-    <span th:if="${currentPage != null and currentPage > 1}">
-        <a th:href="@{/board/list(page=${currentPage - 1})}">이전</a>
+    <span th:if="${currentPage > 1}">
+        <a th:href="@{/board/list/{page}(page=${currentPage - 1})}">이전</a>
     </span>
 
-    <span th:if="${currentPage != null and totalPages != null}" th:text="'페이지 ' + ${currentPage} + ' / ' + ${totalPages}"></span>
+    <span th:text="'페이지 ' + ${currentPage} + ' / ' + ${totalPages}"></span>
 
-    <span th:if="${currentPage != null and totalPages != null and currentPage < totalPages}">
-        <a th:href="@{/board/list(page=${currentPage + 1})}">다음</a>
+    <span th:if="${currentPage < totalPages}">
+        <a th:href="@{/board/list/{page}(page=${currentPage + 1})}">다음</a>
     </span>
 </div>
 
