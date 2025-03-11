@@ -8,17 +8,26 @@ import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 public class BoardResponse {
+    private Long id;  // id 필드 추가
     private String title;
     private String content;
     private LocalDateTime createdAt;
 
     public BoardResponse(Board board) {
+        this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.createdAt = LocalDateTime.parse(board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
     }
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+</head>
+<body>
+
+<h1>게시판 목록</h1>
+
+<!-- 게시판 목록 출력 -->
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- boardPage 객체에서 게시글 목록을 반복문으로 출력 -->
+    <tr th:each="board : ${boardPage.content}">
+        <td th:text="${board.id}"></td>
+        <td>
+            <a th:href="@{/board/{id}(id=${board.id})}" th:text="${board.title}"></a>
+        </td>
+        <!-- 작성일 포맷팅 -->
+        <td th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 페이지네이션 -->
+<div>
+    <span th:if="${currentPage != null and currentPage > 1}">
+        <a th:href="@{/board/list(page=${currentPage - 1})}">이전</a>
+    </span>
+
+    <span th:if="${currentPage != null and totalPages != null}" th:text="'페이지 ' + ${currentPage} + ' / ' + ${totalPages}"></span>
+
+    <span th:if="${currentPage != null and totalPages != null and currentPage < totalPages}">
+        <a th:href="@{/board/list(page=${currentPage + 1})}">다음</a>
+    </span>
+</div>
+
+</body>
+</html>
