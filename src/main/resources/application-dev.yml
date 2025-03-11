@@ -26,6 +26,10 @@ spring:
   output:
     ansi:
       enabled: always
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    enable-spring-el-compiler: true
 
 logging:
   level:
