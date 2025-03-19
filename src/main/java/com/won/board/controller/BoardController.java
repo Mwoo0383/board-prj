@@ -87,7 +87,7 @@ public class BoardController {
     })
     @PatchMapping("/{id}")
     public ResponseEntity<BoardResponse> modify(@PathVariable long id, @RequestBody BoardRequest boardRequest) {
-        BoardResponse boardResponse = boardService.updateBoard(id, boardRequest);
+        BoardResponse boardResponse = boardService.update(id, boardRequest);
         return ResponseEntity.ok(boardResponse);
     }
 
@@ -98,7 +98,7 @@ public class BoardController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remove(@PathVariable long id) {
-        boardService.deleteBoard(id);
+        boardService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

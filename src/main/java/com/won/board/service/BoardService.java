@@ -54,6 +54,7 @@ public class BoardService {
     // 특정 id로 게시판 조회
     public BoardResponse findById(Long id) {
         Board board = boardRepository.findById(id).orElse(null);
+        assert board != null;
         return new BoardResponse(board);
     }
 
@@ -63,24 +64,25 @@ public class BoardService {
         board.setTitle(boardRequest.getTitle());
         board.setContent(boardRequest.getContent());
         board.setCreatedAt(LocalDateTime.now());
+        board.setUpdatedAt(LocalDateTime.now());
 
         boardRepository.save(board);
         return new BoardResponse(board);
     }
 
-    // 게시판 수정
-    public BoardResponse updateBoard(long id, BoardRequest boardRequest) {
+    public BoardResponse update(long id, BoardRequest boardRequest) {
         Board board = boardRepository.findById(id).orElse(null);
 
         if (board == null) return null;
         board.setTitle(boardRequest.getTitle());
         board.setContent(boardRequest.getContent());
+        board.setUpdatedAt(LocalDateTime.now()); // updatedAt 값 설정
         boardRepository.save(board);
         return new BoardResponse(board);
     }
 
     // 삭제 기능
-    public void deleteBoard(long id) {
+    public void delete(long id) {
         Board board = boardRepository.findById(id).orElse(null);
         if (board != null) boardRepository.delete(board);
     }

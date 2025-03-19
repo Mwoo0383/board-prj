@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardRequest {
-    private String title;
-    private String content;
+public class UserRequest {
+    private String userId;
+    private String password;
+    private String email;
+    private String username;
+    private String phone;
 }
