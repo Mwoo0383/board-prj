@@ -54,6 +54,7 @@ public class BoardService {
     // 특정 id로 게시판 조회
     public BoardResponse findById(Long id) {
         Board board = boardRepository.findById(id).orElse(null);
+        assert board != null;
         return new BoardResponse(board);
     }
 
